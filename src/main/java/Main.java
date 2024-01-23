@@ -14,7 +14,7 @@ class Calculator {
     public void start() {
         while (true) {
             System.out.println("Введите количество людей (больше 1):");
-            int nop = scanner.nextInt();
+            int nop = getInputInt();
 
             if (nop > 1) {
                 numberOfPeople = nop;
@@ -41,7 +41,22 @@ class Calculator {
         }
         displayResults(); // Вывод результатов
     }
-
+    // Получение целого числа с проверкой корректности ввода
+    private int getInputInt() {
+        while (true) {
+            if (scanner.hasNextInt()) {
+                int input = scanner.nextInt();
+                if (input > 0) {
+                    return input;
+                } else {
+                    System.out.println("Количество людей должно быть больше 1. ");
+                }
+            } else {
+                System.out.println("Некорректный ввод. Пожалуйста, введите целое число.");
+                scanner.next(); // Очищаем буфер
+            }
+        }
+    }
     // Получение дробного числа с проверкой корректности ввода
     private double getInputDouble() {
         while (true) {
